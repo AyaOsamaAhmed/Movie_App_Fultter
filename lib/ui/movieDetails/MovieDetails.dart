@@ -10,10 +10,14 @@ class MovieDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Movie Title : ${item.title}"),),
+      appBar: AppBar(title: Text(" ${item.title}",
+          style: TextStyle(fontSize: 24 , fontWeight: FontWeight.bold, color: Colors.blue)) ,
+      backgroundColor: Colors.greenAccent,
+
+    ),
       body: Center(
         child: Container(
-          child: Image.network( "${item.posterPath}"),
+          child: Image.network( 'https://image.tmdb.org/t/p/w500/${item.posterPath}'),
         ),
       ),
     );

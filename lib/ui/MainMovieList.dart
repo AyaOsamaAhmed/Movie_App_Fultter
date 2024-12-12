@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/ui/widget/DrawerWidget.dart';
 
 import 'MovieList/movies.dart';
 
@@ -18,6 +19,7 @@ class _MainmovielistState extends State<MainMovieList> {
             style: TextStyle(fontSize: 24 , fontWeight: FontWeight.bold, color: Colors.blue)) ,
       backgroundColor: Colors.greenAccent,
       ),
+      drawer: DrawerWidget(),
       body: MoviesList(),
     );
   }

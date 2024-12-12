@@ -2,7 +2,26 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/model/MovieModel.dart';
+import '../../domain/model/MovieResponse.dart';
 import '../movieDetails/MovieDetails.dart';
+
+
+Widget moviesFutureBuilder(BuildContext context ,Future<MovieResponse> moviesFuture) {
+  return FutureBuilder(
+      future: moviesFuture,
+      builder: (context, snapShot) {
+        if (snapShot.hasData) {
+          return moviesListWidget(context,snapShot.data!.results!);
+        } else if (snapShot.hasError) {
+          return Text(snapShot.error.toString(),
+              style: const TextStyle(color: Colors.red));
+        }
+        return const CircularProgressIndicator(
+          strokeCap: StrokeCap.round,
+          color: Colors.blueAccent,
+        );
+      });
+}
 
 Widget moviesListWidget(BuildContext context,List<MovieModel> list) {
   return ListView.builder(
@@ -24,7 +43,7 @@ Widget movieItemWidget(BuildContext context,MovieModel item) {
         ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
           child: Image.network(
-           '${item.posterPath}',
+            'https://image.tmdb.org/t/p/w500/${item.posterPath}',//'${item.posterPath}',
             fit: BoxFit.cover,
           ),
         ),
