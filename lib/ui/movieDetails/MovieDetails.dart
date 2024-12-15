@@ -50,7 +50,23 @@ class _State extends State<MovieDetails> {
                   ), ),
                 ),
               if(_index == 2)
-                Image.asset('assets/images/rate_us.jpg'),
+                Column(
+                  children: [
+                    Expanded(child: Image.asset('assets/images/rate_us.jpg')),
+                     Card(
+                      child: new Container(
+                        padding: new EdgeInsets.all(32.0),
+                        child: new Column(
+                          children: <Widget>[
+                            new Text('Hello World!'),
+                            new Text('How are you?')
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
             ],
           ),
         ),
