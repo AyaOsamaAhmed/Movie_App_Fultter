@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/ui/MainMovieList.dart';
 
+import 'ui/login/login.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainMovieList(),
+      home:  LoginPage(),
     );
   }
 }
