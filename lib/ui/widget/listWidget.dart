@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/model/MovieModel.dart';
@@ -40,13 +41,28 @@ Widget movieItemWidget(BuildContext context,MovieModel item) {
     },
     child: Column(
       children: [
-        ClipRRect(
+        FadeInImage(
+          image:NetworkImage('https://image.tmdb.org/t/p/w500/${item.posterPath}'),
+          placeholder: const AssetImage("assets/images/avatar.png"),
+          imageErrorBuilder:(context, error, stackTrace) {
+            return Image.asset('your_default_image_path',
+                fit: BoxFit.fitWidth
+            );
+          },
+          fit: BoxFit.fitWidth,
+        ),
+      /*  CachedNetworkImage(
+          imageUrl:   'https://image.tmdb.org/t/p/w500/${item.posterPath}',
+          placeholder: (context, url) => new CircularProgressIndicator(),
+          errorWidget: (context, url, error) => new Icon(Icons.error),
+        ),*/
+      /*  ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
           child: Image.network(
             'https://image.tmdb.org/t/p/w500/${item.posterPath}',//'${item.posterPath}',
             fit: BoxFit.cover,
           ),
-        ),
+        ),*/
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
           child: Column(

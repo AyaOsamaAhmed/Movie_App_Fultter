@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movies_app/ui/MovieList/movies.dart';
 
@@ -13,9 +14,9 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPageState extends State<LoginPage>{
 
-  var userName = "";
   var password = "";
 
+  TextEditingController userName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class _LoginPageState extends State<LoginPage>{
             children: [
               Image.asset('assets/images/login_img.png'),
               Padding(padding: new EdgeInsets.all(22.0)),
-              Text("user: $userName , pass: $password"),
+              Text("user: ${userName.text} , pass: $password"),
               TextField(
                 decoration: InputDecoration(
                     labelText: 'User Name',
@@ -39,7 +40,8 @@ class _LoginPageState extends State<LoginPage>{
                 autocorrect: true,
                 autofocus: true,
                 keyboardType: TextInputType.text,
-                onChanged: _onSubUser,
+                controller: userName,
+
               ),
 
               Padding(padding: new EdgeInsets.all(22.0)),
@@ -73,7 +75,7 @@ class _LoginPageState extends State<LoginPage>{
   }
 
   _onPressed() {
-      if(userName == "aya" && password == "123"){
+      if(userName.text == "aya" && password == "123"){
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) =>  MainMovieList()),
@@ -93,12 +95,6 @@ class _LoginPageState extends State<LoginPage>{
             fontSize: 16.0);
 */
       }
-  }
-
-  _onSubUser(String user) {
-    setState(() {
-      this.userName = user ;
-    });
   }
 
   _onSubPass(String pass) {
